@@ -4,6 +4,7 @@ import HomePage from './home.jsx';
 import Delivery from './delivery.jsx';
 import Book from './book.jsx';
 import App from './app.jsx';
+import personalInfo from './personal-information.jsx';
 import React from 'react';
 import ReactDOM from 'react-dom';
 require('jquery');
@@ -18,6 +19,7 @@ const route = <Router history={hashHistory}>
     <Route path="/" component={App}>
         <IndexRoute component={LoginPage}/>
         <Route path='LoginPage' component={LoginPage}/>
+        <Route path='personalInfoPage' component={personalInfo}/>
         <Route path='home' component={HomePage} />
         <Route path='book' component={Book}/>
         <Route path='delivery' component={Delivery}/>

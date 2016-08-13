@@ -38,6 +38,9 @@ module.exports = {
             }, {
                 test: require.resolve("jquery"),
                 loader: "expose?$!expose?jQuery"
+            },{
+                test: /\.(jpeg|jpg)$/,
+                loader: 'url-loader?limit=8192'
             }],
     },
     plugins: [

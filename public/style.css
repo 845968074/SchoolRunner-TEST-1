@@ -3,7 +3,7 @@
     padding:0;
 }
 body {
-    /*background: url("../background.jpeg") left top no-repeat;*/
+    background: url("../background.jpeg") left top no-repeat;
     background-size: 100%;
 }
 .all{
@@ -17,7 +17,7 @@ body {
 
 .top {
     height: 80px;
-    /*background: url("../a.jpg") left top no-repeat;*/
+    background: url("../a.jpg") left top no-repeat;
     margin-top: 15px;
 }
 .title {
