@@ -5,6 +5,7 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import express from 'express';
 import bodyParse from 'body-parser';
 import mongodb from '../public/mongodb/query.js';
+import db from '../public/mongodb/db';
 const app = express();
 const compiler = webpack(webpackConfig);
 app.use(bodyParse.json());
@@ -29,10 +30,10 @@ app.get('/hello', function (req, res) {
     res.send('Hello, world!');
 });
 
-// app.post('./login',)
-
 app.post('/login',mongodb.insert);
+app.post('/personal',mongodb.modify);
 
 app.listen(3000, function () {
+    db.connect();
     console.log('Listening on 3000');
 });

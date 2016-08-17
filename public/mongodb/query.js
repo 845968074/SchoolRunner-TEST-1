@@ -1,22 +1,18 @@
-import db from './db';
-var User = require('./user.js');
+const User = require('./user.js');
+let userName = "";
 
-
-exports.insert = function (req,res) {
+exports.insert = function (req,res,next) {
     let name = req.body.name;
     let password = req.body.password;
-    console.log("111111111");
-    db.connect();
     User.findOne({name:name},function (err,user) {
-        console.log(user);
-        if(err) res.send(err.message);
-
+        if(err) return next(err);
         if(user == null){
-            res.send('NO INFO');
+            res.status(500).send('NO INFO');
         }else{
             if(user.password != password){
-                res.send('passwordError');
+                res.status(500).send('passwordError');
             }else{
+                userName = name;
                 if(user.tel||user.email){
                     res.send('SUCCESS');
                 }else{
@@ -24,10 +20,19 @@ exports.insert = function (req,res) {
                 }
             }
         }
-        db.close();
     });
 };
-
+exports.modify = function (req,res,next) {
+    let email = req.body.email;
+    let tel = req.body.tel;
+    User.update({name:userName},{email:email,tel:tel},function (err) {
+        if(err){
+            return next(err);
+        }else{
+            res.send("SUCCESS");
+        }
+    })
+};
 // class operate {
 //     Remove(id) {
 //         User.remove({ID:id}, function (err, user) {
